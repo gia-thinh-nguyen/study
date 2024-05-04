@@ -1,0 +1,80 @@
+.clock{
+ width:300px;
+ height:300px;
+ border-radius:50%;
+ border:2px solid black;
+ position:relative;
+
+}
+
+.clock .number{
+    --deg:0;
+    position:absolute;
+    width:100%;
+    height:100%;
+    text-align:center;
+    transform:rotate(var(--deg));
+    font-size:28px;
+}
+.clock .number1{--deg:30deg;}
+.clock .number2{--deg:60deg;}
+.clock .number3{--deg:90deg;}
+.clock .number4{--deg:120deg;}
+.clock .number5{--deg:150deg;}
+.clock .number6{--deg:180deg;}
+.clock .number7{--deg:210deg;}
+.clock .number8{--deg:240deg;}
+.clock .number9{--deg:270deg;}
+.clock .number10{--deg:300deg;}
+.clock .number11{--deg:330deg;}
+
+.clock .hand{
+    --deg:0;
+    position:absolute;
+    bottom:50%;
+    left:50%;
+    width:10px;
+    transform-origin:bottom;
+    transform:translateX( -50%) rotate(calc(var(--deg)*1deg));
+    border:1px solid white;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    z-index:10;
+}
+.clock .hand.seconds{
+    --deg:0;
+    height:45%;
+    background-color:red;
+    width:3px;
+    border-radius:100px 0 0 0 ;
+}
+.clock .hand.minutes{
+    --deg:0;
+    height:40%;
+    background-color:black;
+    width:8px;
+}
+.clock .hand.hours{
+    --deg:0;
+    height:32%;
+    background-color:black;
+    width:12px;
+}
+
+
+.clock::after{
+    content:'';
+    position:absolute;
+    width:15px;
+    height:15px;
+    background-color:black;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:30;
+}
+
+
+
+
