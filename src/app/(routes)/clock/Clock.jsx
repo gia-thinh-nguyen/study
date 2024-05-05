@@ -126,6 +126,8 @@ const Clock = forwardRef((props, ref)=> {
   )
 })
 
-export default Clock
 
 
+
+
+export default Clock;

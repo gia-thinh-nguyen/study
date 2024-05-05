@@ -3,7 +3,7 @@
 import FriendCount from "@/components/FriendCount/FriendCount";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Clock from './(routes)/clock/page';
+import Clock from './(routes)/clock/Clock';
 import Video from "./../../components1/Video"
 import TodoListModal from "./../../components1/Todo"
 export default function Home() {
