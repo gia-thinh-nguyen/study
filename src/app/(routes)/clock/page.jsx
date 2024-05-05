@@ -1,9 +1,9 @@
 'use client'
-import React, { use, useEffect, useRef,useState } from 'react';
+import React, { forwardRef,useImperativeHandle, useEffect, useRef,useState } from 'react';
 import './clock.css';
-import Sector from '../../../../components/Sector';
-import { BsFillSkipEndFill } from "react-icons/bs";
-const page = () => {
+import Sector from '../../../../components1/Sector';
+
+const Clock = forwardRef((props, ref)=> {
     const hourRef = useRef(null);
     const minuteRef = useRef(null);
     const secondRef = useRef(null);
@@ -81,7 +81,6 @@ const page = () => {
         
         
         })}, 1000)
-        console.log(startDegree,endDegree,currentPhase)
       // Cleanup function to clear the interval when the component unmounts
       return () => clearInterval(intervalId);
     });
@@ -98,9 +97,13 @@ const page = () => {
     }
     setCurrentPhase(prev=>!prev);
   }
+  useImperativeHandle(ref, () => ({
+    setPomodoro,
+    skip,
+  }));
   return (
     <div>
-      <div className="clock">
+      <div className="clock transform-gpu ">
         <div className="hand hours" ref={hourRef}></div>
         <div className="hand minutes" ref={minuteRef}></div>
         <div className="hand seconds" ref={secondRef}></div>
@@ -118,17 +121,11 @@ const page = () => {
         <div className="number number12">12</div>
         {show?<Sector startDegree={startDegree} endDegree={endDegree} color={currentPhase}/>:null}
     </div>
-    <div className="pt-[50px] flex gap-10">
-    <button onClick={setPomodoro}>On/Off</button>
-    <button onClick={skip}><BsFillSkipEndFill/></button>
-    <p>{currentPhase?'Session':'Break'}</p>
-    </div>
-    
-    <audio src='/assets/doorbelll.mp3' ref={audioRef}></audio>
+    <audio src='/assets/others/doorbell.mp3' ref={audioRef}></audio>
     </div>
   )
-}
+})
 
-export default page
+export default Clock
 
 

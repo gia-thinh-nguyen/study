@@ -1,9 +1,12 @@
 .clock{
- width:300px;
- height:300px;
+ width:250px;
+ height:250px;
  border-radius:50%;
- border:2px solid black;
+
  position:relative;
+ background-color:#f9cdca;
+ transform:skew(-3deg);
+
 
 }
 
@@ -45,20 +48,20 @@
     --deg:0;
     height:45%;
     background-color:red;
-    width:3px;
+    width:5px;
     border-radius:100px 0 0 0 ;
 }
 .clock .hand.minutes{
     --deg:0;
     height:40%;
     background-color:black;
-    width:8px;
+    width:10px;
 }
 .clock .hand.hours{
     --deg:0;
     height:32%;
     background-color:black;
-    width:12px;
+    width:14px;
 }
 
 
