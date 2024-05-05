@@ -11,7 +11,6 @@ const Video = () => {
         setMounted(true);
         generateRandomVideoId();
        }, [])
-       console.log(videos.items.map((video) => video.id.videoId))
        const generateRandomVideoId = () => {
         const random = Math.floor(Math.random() * videos.items.length);
         setRandomVideoId(videos.items[random].id.videoId);

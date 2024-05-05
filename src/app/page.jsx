@@ -76,9 +76,17 @@ export default function Home() {
   const handleOpenModal=()=>{
     setShowModal(prev=>!prev);
   }
-  return (
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+   }, [])
+  return mounted&&(
     <div className="h-screen w-full transform-gpu " ref={screenRef}>
-      <div className="relative h-screen w-screen">
+    <div className="relative h-screen w-screen">
+    
+    <div className='bg-white z-[500] absolute max-w-[300px] top-[20vh] left-[45vw] rounded-lg p-2' >
+    {showModal&&<TodoListModal /> }
+    </div>
     {/*background */}
       <Image src={"/assets/background/night.jpeg"} width={1920} height={1080} alt="image" className={`max-w-[100%] z-[-5] absolute ${background==1?'':'hidden'}`}></Image>
       <Image src={"/assets/background/forest.png"} width={1920} height={1080} alt="image" className={`max-w-[100%] z-[-5] absolute ${background==2?'':'hidden'}`}></Image>
@@ -88,15 +96,14 @@ export default function Home() {
     {/* furniture */}
     <Image src={"/assets/others/svg.png"} width={1920} height={1080} alt="image" className=" absolute"></Image>
     {/* onselected elements */}
-   <div className={`w-full max-w-[40vw] max-h-[10vh] opacity-0 hover:opacity-100 z-[100] absolute  ${isFullscreen?'top-[77%]':'top-[91%]'} left-[70px]`} onClick={handleOpenModal}>
-   <Image layout="responsive" src="/assets/onselected/notebook.png" width={500} height={50} alt="image" ></Image >
+   <div className={` w-full max-w-[40vw] max-h-[10vh] opacity-0 hover:opacity-100 z-[100] fixed  ${isFullscreen?'top-[77%]':'top-[91%]'} left-[70px]`} onClick={handleOpenModal}>
+   <Image layout="responsive" src="/assets/onselected/notebook.png" width={480} height={50} alt="image" className="scale-[102%]" ></Image >
    </div>
-    <div className={` max-w-[40%] opacity-0 hover:opacity-100 z-[100] absolute ${isFullscreen?'top-[35%]':'top-[42%]'} left-[33%]`}>
+    <div className={` max-w-[40%] opacity-0 hover:opacity-100 z-[100] fixed ${isFullscreen?'top-[35%]':'top-[42%]'} left-[33%]`}>
       <Image layout="responsive" src="/assets/onselected/laptop.png" width={500} height={50} alt="image" ></Image>
-      
     </div>
     {/* video */}
-    <div className={`absolute  ${isFullscreen?'top-[39%]':'top-[46%]'}  left-[35.25%] z-[200] w-full max-w-[32vw]  3xl:max-w-[33vw] `}><Video /></div>
+    <div className={`absolute  ${isFullscreen?'top-[39%]':'top-[46%]'}  left-[35.25%] z-[200] w-full max-w-[32vw]  3xl:max-w-[33vw] `}><Video className='scale-[80%'/></div>
     
       {/* clock */}
     <div className="group hidden 3xl:block" > 
@@ -140,7 +147,7 @@ export default function Home() {
     </div>
     
     {/* friend */}
-    <div className="absolute text-white  "><FriendCount /></div>
+   
   
     
     {/*buttons */}
@@ -153,16 +160,14 @@ export default function Home() {
       {isFullscreen ? "End Session" : "Lock In"}<Image src="/assets/others/lock.png" width={50} height={50} alt="image"></Image>
     </button>
     {/*task */}
-    <div>
-    {showModal&&<TodoListModal />}
-    </div>
     
+  
     
     </div>
     
 
       
-    </div>
+  </div>
 
   );
 }
