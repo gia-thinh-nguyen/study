@@ -1,7 +1,8 @@
 "use client";
 
 import FriendCount from "@/components/FriendCount/FriendCount";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState,useContext } from "react";
+import { Context } from "@/app/WholeContext";
 import Image from "next/image";
 import Clock from './(routes)/clock/Clock';
 import Video from "./../../components1/Video"
@@ -66,17 +67,14 @@ export default function Home() {
       clockRef.current.skip();
     }
   }
+  const{show,setShow}=useContext(Context);
   const handleSetPomodoro = () => {
-    if (clockRef.current) {
-      clockRef.current.setPomodoro();
-    }
+    setShow(prev=>!prev);
   }
-  const todoRef = useRef();
-  const handleOpenModal = () => {
-    if (todoRef.current) {
-      todoRef.current.handleOpenModal();
-      
-    }
+  
+  const{showModal,setShowModal}=useContext(Context);
+  const handleOpenModal=()=>{
+    setShowModal(prev=>!prev);
   }
   return (
     <div className="h-screen w-full transform-gpu " ref={screenRef}>
@@ -155,8 +153,8 @@ export default function Home() {
       {isFullscreen ? "End Session" : "Lock In"}<Image src="/assets/others/lock.png" width={50} height={50} alt="image"></Image>
     </button>
     {/*task */}
-    <div className="z-[500]">
-    <TodoListModal ref={todoRef}/>
+    <div>
+    {showModal&&<TodoListModal />}
     </div>
     
     

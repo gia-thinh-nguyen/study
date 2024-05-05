@@ -1,13 +1,11 @@
 'use client'
-import React, { useState,forwardRef,useImperativeHandle,useRef } from 'react';
-
-const TodoListModal=React.forwardRef((props, ref)=>{
+import React, { useState,useContext} from 'react';
+import { Context } from '@/app/WholeContext';
+const TodoListModal=()=>{
   const [tasks, setTasks] = useState([]);
   const [taskInput, setTaskInput] = useState('');
-  const [showModal, setShowModal] = useState(false);
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
+  const {showModal, setShowModal}= useContext(Context);
+  
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -29,12 +27,10 @@ const TodoListModal=React.forwardRef((props, ref)=>{
   const handleClearAll = () => {
     setTasks([]);
   };
-  useImperativeHandle(ref, () => ({
-    handleOpenModal
-  }));
+
   return (
     <div className='z-[500]'>
-      {showModal && (
+      {(
         <div className="fixed inset-0 overflow-y-auto z-[500]">
           <div className="flex items-center justify-center min-h-screen p-6">
             <div className="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -97,6 +93,6 @@ const TodoListModal=React.forwardRef((props, ref)=>{
       )}
     </div>
   );
-})
+}
 
 export default TodoListModal;

@@ -1,5 +1,6 @@
 'use client'
-import React, { forwardRef,useImperativeHandle, useEffect, useRef,useState } from 'react';
+import React, { forwardRef,useImperativeHandle, useEffect, useRef,useState,useContext } from 'react';
+import { Context } from '@/app/WholeContext';
 import './clock.css';
 import Sector from '../../../../components1/Sector';
 
@@ -13,7 +14,7 @@ const Clock = React.forwardRef((props, ref)=> {
     }
     const [startDegree, setStartDegree] = useState(null);
     const [endDegree, setEndDegree] = useState(null);
-    const[show,setShow]=useState(false);
+    const{show,setShow}=useContext(Context);
     const[currentPhase,setCurrentPhase]=useState(true);
 
   useEffect(() => {
