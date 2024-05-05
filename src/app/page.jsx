@@ -3,7 +3,7 @@
 import FriendCount from "@/components/FriendCount/FriendCount";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Clock from './(routes)/clock/page';
+import Clock from './(routes)/clock/Clock';
 import Video from "./../../components1/Video"
 import TodoListModal from "./../../components1/Todo"
 export default function Home() {
@@ -79,9 +79,6 @@ export default function Home() {
     }
   }
   return (
-
-    
-
     <div className="h-screen w-full transform-gpu " ref={screenRef}>
       <div className="relative h-screen w-screen">
     {/*background */}
@@ -123,12 +120,13 @@ export default function Home() {
         
       </div>
     </div>
+    
     <div className="group 3xl:hidden scale-[85%]" > 
-      <div className={`box1  z-[100] absolute ${isFullscreen?'top-[47%]':'top-[65vh]'} right-[-5vw]`}>
+      <div className={`box1  z-[100] absolute ${isFullscreen?'top-[54vh]':'top-[65vh]'} right-[-5vw]`}>
         <Image src="/assets/onselected/clock.png" width={400} height={100} alt="image" className="z-[50] opacity-0 group-hover:opacity-100"></Image>
         <div className={`absolute right-[105px] top-[29%]`}><Clock ref={clockRef}/></div>
       </div>
-      <div className={`box2 opacity-0 group-hover:opacity-100 z-[110] absolute ${isFullscreen?'top-[33%]':'top-[48vh]'} right-[0vw]`}>
+      <div className={`box2 opacity-0 group-hover:opacity-100 z-[110] absolute ${isFullscreen?'top-[37vh]':'top-[48vh]'} right-[0vw]`}>
         <Image src="/assets/others/callout.png" width={280} height={100} alt="image"></Image> 
         
         <div className="absolute top-[45%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-max">
@@ -157,8 +155,8 @@ export default function Home() {
       {isFullscreen ? "End Session" : "Lock In"}<Image src="/assets/others/lock.png" width={50} height={50} alt="image"></Image>
     </button>
     {/*task */}
-    <div>
-    {<TodoListModal ref={todoRef}  />}
+    <div className="z-[500]">
+    <TodoListModal ref={todoRef}/>
     </div>
     
     

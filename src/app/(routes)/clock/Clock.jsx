@@ -3,7 +3,7 @@ import React, { forwardRef,useImperativeHandle, useEffect, useRef,useState } fro
 import './clock.css';
 import Sector from '../../../../components1/Sector';
 
-const Clock = forwardRef((props, ref)=> {
+const Clock = React.forwardRef((props, ref)=> {
     const hourRef = useRef(null);
     const minuteRef = useRef(null);
     const secondRef = useRef(null);

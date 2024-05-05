@@ -1,7 +1,7 @@
 'use client'
 import React, { useState,forwardRef,useImperativeHandle,useRef } from 'react';
 
-const TodoListModal=forwardRef((props, ref)=>{
+const TodoListModal=React.forwardRef((props, ref)=>{
   const [tasks, setTasks] = useState([]);
   const [taskInput, setTaskInput] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -33,9 +33,9 @@ const TodoListModal=forwardRef((props, ref)=>{
     handleOpenModal
   }));
   return (
-    <div>
+    <div className='z-[500]'>
       {showModal && (
-        <div className="fixed inset-0 overflow-y-auto z-[200]">
+        <div className="fixed inset-0 overflow-y-auto z-[500]">
           <div className="flex items-center justify-center min-h-screen p-6">
             <div className="fixed inset-0 transition-opacity" aria-hidden="true">
               
