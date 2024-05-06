@@ -7,13 +7,22 @@ const WholeContext = (props) => {
     const[showModal,setShowModal]=useState(null);
     const[show,setShow]=useState(false);
     const [tasks, setTasks] = useState([]);
+    const [startDegree, setStartDegree] = useState(null);
+    const [endDegree, setEndDegree] = useState(null);
+    const[currentPhase,setCurrentPhase]=useState(true);
     const value={
         showModal,
         setShowModal,
         show,
         setShow,
         tasks,
-        setTasks
+        setTasks,
+        startDegree,
+        setStartDegree,
+        endDegree,
+        setEndDegree,
+        currentPhase,
+        setCurrentPhase
     }
     return (
         <Context.Provider value={value}>

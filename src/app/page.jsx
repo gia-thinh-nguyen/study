@@ -61,15 +61,33 @@ export default function Home() {
       return next;
     });
   }
-  const clockRef = useRef();
+  const{show,setShow,currentPhase,setCurrentPhase,setEndDegree}=useContext(Context);
+
   const handleSkip = () => {
-    if (clockRef.current) {
-      clockRef.current.skip();
+    const date = new Date();
+    const second = date.getSeconds() / 60;
+    const minute = (second + date.getMinutes()) / 60;
+    if(currentPhase){
+      setEndDegree(minute * 360-90+5/60*360);
     }
+    else{
+      setEndDegree(minute * 360-90+25/60*360);
+    }
+    setCurrentPhase(prev=>!prev);
   }
-  const{show,setShow}=useContext(Context);
+
   const handleSetPomodoro = () => {
     setShow(prev=>!prev);
+    const date = new Date();
+    const second = date.getSeconds() / 60;
+    const minute = (second + date.getMinutes()) / 60;
+    if(currentPhase){
+      setEndDegree(minute * 360-90+25/60*360);
+    }
+    else{
+      setEndDegree(minute * 360-90+5/60*360);
+    }
+    
   }
   
   const{showModal,setShowModal}=useContext(Context);
@@ -109,7 +127,7 @@ export default function Home() {
     <div className="group hidden 3xl:block" > 
       <div className={`box1  z-[100] absolute ${isFullscreen?'top-[47%]':'top-[55%]'} right-[4vw]`}>
         <Image src="/assets/onselected/clock.png" width={400} height={100} alt="image" className="z-[50] opacity-0 group-hover:opacity-100"></Image>
-        <div className={`absolute right-[105px] top-[29%]`}><Clock ref={clockRef}/></div>
+        <div className={`absolute right-[105px] top-[29%]`}><Clock/></div>
       </div>
       <div className={`box2 opacity-0 group-hover:opacity-100 z-[110] absolute ${isFullscreen?'top-[33%]':'top-[38%]'} right-[120px]`}>
         <Image src="/assets/others/callout.png" width={280} height={100} alt="image"></Image> 
@@ -129,7 +147,7 @@ export default function Home() {
     <div className="group 3xl:hidden scale-[85%]" > 
       <div className={`box1  z-[100] absolute ${isFullscreen?'top-[54vh]':'top-[65vh]'} right-[-5vw]`}>
         <Image src="/assets/onselected/clock.png" width={400} height={100} alt="image" className="z-[50] opacity-0 group-hover:opacity-100"></Image>
-        <div className={`absolute right-[105px] top-[29%]`}><Clock ref={clockRef}/></div>
+        <div className={`absolute right-[105px] top-[29%]`}><Clock/></div>
       </div>
       <div className={`box2 opacity-0 group-hover:opacity-100 z-[110] absolute ${isFullscreen?'top-[37vh]':'top-[48vh]'} right-[0vw]`}>
         <Image src="/assets/others/callout.png" width={280} height={100} alt="image"></Image> 

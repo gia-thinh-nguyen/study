@@ -1,10 +1,10 @@
 'use client'
-import React, { forwardRef,useImperativeHandle, useEffect, useRef,useState,useContext } from 'react';
+import React, {useEffect, useRef,useContext } from 'react';
 import { Context } from '@/app/WholeContext';
 import './clock.css';
 import Sector from '../../../../components1/Sector';
 
-const Clock = React.forwardRef((props, ref)=> {
+const Clock = ()=> {
     const hourRef = useRef(null);
     const minuteRef = useRef(null);
     const secondRef = useRef(null);
@@ -12,11 +12,8 @@ const Clock = React.forwardRef((props, ref)=> {
     function playSound() {
       audioRef.current?.play();
     }
-    const [startDegree, setStartDegree] = useState(null);
-    const [endDegree, setEndDegree] = useState(null);
-    const{show,setShow}=useContext(Context);
-    const[currentPhase,setCurrentPhase]=useState(true);
-
+    
+    const{show,setStartDegree,endDegree,setEndDegree,currentPhase,setCurrentPhase}=useContext(Context);
   useEffect(() => {
     const setClock = () => {
       const date = new Date();
@@ -40,34 +37,16 @@ const Clock = React.forwardRef((props, ref)=> {
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
-  
-  
-  const setPomodoro = () => {
-    const date = new Date();
-    const second = date.getSeconds() / 60;
-    const minute = (second + date.getMinutes()) / 60;
-    setShow(prev=>!prev);
-    if(currentPhase){
-      setEndDegree(minute * 360-90+25/60*360);
-    }
-    else{
-      setEndDegree(minute * 360-90+5/60*360);
-    }
-  }
 
     useEffect(() => {
-     
       const date = new Date();
       const second = date.getSeconds() / 60;
       const minute = (second + date.getMinutes()) / 60;
-    
-      
-      
       const intervalId = setInterval(() => {
         setStartDegree(prev=>{
           if(prev>endDegree){
             playSound();
-            
+
             if(currentPhase){
               setEndDegree(minute * 360-90+5/60*360);
               setCurrentPhase(false);
@@ -85,23 +64,7 @@ const Clock = React.forwardRef((props, ref)=> {
       // Cleanup function to clear the interval when the component unmounts
       return () => clearInterval(intervalId);
     });
-
-  const skip=()=>{
-    const date = new Date();
-    const second = date.getSeconds() / 60;
-    const minute = (second + date.getMinutes()) / 60;
-    if(currentPhase){
-      setEndDegree(minute * 360-90+5/60*360);
-    }
-    else{
-      setEndDegree(minute * 360-90+25/60*360);
-    }
-    setCurrentPhase(prev=>!prev);
-  }
-  useImperativeHandle(ref, () => ({
-    setPomodoro,
-    skip,
-  }));
+  
   return (
     <div>
       <div className="clock transform-gpu ">
@@ -120,12 +83,12 @@ const Clock = React.forwardRef((props, ref)=> {
         <div className="number number10">10</div>
         <div className="number number11">11</div>
         <div className="number number12">12</div>
-        {show?<Sector startDegree={startDegree} endDegree={endDegree} color={currentPhase}/>:null}
+        {show?<Sector/>:null}
     </div>
     <audio src='/assets/others/doorbell.mp3' ref={audioRef}></audio>
     </div>
   )
-})
+}
 
 
 

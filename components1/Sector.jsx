@@ -1,9 +1,10 @@
 'use client'
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
+import { Context } from '@/app/WholeContext';
 
 
-
-const Sector = ({startDegree,endDegree,color}) => {
+const Sector = () => {
+    const{startDegree,endDegree,currentPhase}=useContext(Context);
     if(startDegree===null)return;
 
   const canvasRef = useRef(null);
@@ -33,7 +34,7 @@ const Sector = ({startDegree,endDegree,color}) => {
     ctx.moveTo(x, y);
     ctx.arc(x, y, radius, startAngle, endAngle);
     ctx.closePath();
-    ctx.fillStyle = color?'#CE7B91':'#88D9E6'; // Set sector fill color
+    ctx.fillStyle = currentPhase?'#CE7B91':'#88D9E6'; // Set sector fill color
     ctx.fill();
   }, [startDegree, endDegree]);
 
